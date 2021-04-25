@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -34,6 +37,10 @@ public class InterviewServiceImpl implements InterviewService {
 
     @Override
     public Interview insert(Interview interview) {
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        LocalDate localDate = LocalDate.now();
+        Date createdDate = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+        interview.setCreated(createdDate);
         return repository.save(interview);
     }
 
@@ -50,6 +57,10 @@ public class InterviewServiceImpl implements InterviewService {
     @Override
     public boolean update(Interview interview) {
         try {
+            ZoneId defaultZoneId = ZoneId.systemDefault();
+            LocalDate localDate = LocalDate.now();
+            Date createdDate = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+            interview.setCreated(createdDate);
             repository.save(interview);
             return true;
         } catch (Exception e) {
