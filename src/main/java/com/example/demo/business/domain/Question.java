@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 import java.util.Set;
 import java.util.UUID;
 
@@ -16,17 +16,19 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "question")
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private UUID id;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @Column(name = "interviews")
     private Set<UUID> interviews;
 
     @NotNull
-    @Size(min = 1)//TODO: Сделать ограничения по таблице
-    @Column
+    @Column(name = "text")
     private String text;
     //TODO: порядок
 }
