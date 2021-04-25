@@ -22,7 +22,6 @@ import java.util.UUID;
 public class Interview {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     @Column(name = "id")
     private UUID id;
 
