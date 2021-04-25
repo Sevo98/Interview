@@ -2,6 +2,7 @@ package com.example.demo.web.api;
 
 import com.example.demo.business.domain.Interview;
 import com.example.demo.business.services.InterviewService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +12,9 @@ import java.util.UUID;
 @RequestMapping("/interview")
 public class InterviewController {
 
+    @Autowired
     InterviewService interviewService;
+
 
     @GetMapping("")
     public List<Interview> getAllInterview() {

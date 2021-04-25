@@ -3,12 +3,16 @@ package com.example.demo.business.services.Impl;
 import com.example.demo.business.domain.Interview;
 import com.example.demo.business.repositories.InterviewRepository;
 import com.example.demo.business.services.InterviewService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
+@Slf4j
 public class InterviewServiceImpl implements InterviewService {
     @Autowired
     private InterviewRepository repository;
