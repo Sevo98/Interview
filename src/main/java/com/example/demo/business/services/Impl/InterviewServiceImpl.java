@@ -57,10 +57,13 @@ public class InterviewServiceImpl implements InterviewService {
     @Override
     public boolean update(Interview interview) {
         try {
+            Optional<Interview> interviewForCreationDate = repository.findById(interview.getId());
+            Date creationDate = interviewForCreationDate.get().getCreated();
             ZoneId defaultZoneId = ZoneId.systemDefault();
             LocalDate localDate = LocalDate.now();
-            Date createdDate = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
-            interview.setCreated(createdDate);
+            Date updatedDate = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+            interview.setCreated(creationDate);
+            interview.setUpdated(updatedDate);
             repository.save(interview);
             return true;
         } catch (Exception e) {

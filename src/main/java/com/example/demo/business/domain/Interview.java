@@ -28,7 +28,7 @@ public class Interview {
 
     @NotNull
     @Size(min = 1, max = 64)
-    @Column(name = "name", length = 64, unique = true, updatable = false, nullable = false)
+    @Column(name = "name")
     private String name;
 
     @CreatedDate
