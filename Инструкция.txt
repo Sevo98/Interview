@@ -1,0 +1,49 @@
+На данный момент в проекте не реализовано заполнение данных БД через Liquibase,
+поэтому прошу запустить данные команды для создания таблиц:
+
+------------------------interview------------------------------
+    
+CREATE TABLE public.interview
+(
+    updated date,
+    name character varying(64) COLLATE pg_catalog."default" NOT NULL,
+    created date,
+    id uuid NOT NULL,
+    activity boolean,
+    CONSTRAINT "Interview_pkey" PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.interview
+    OWNER to postgres;
+INSERT INTO public."interview" (id, name, created, activity)  
+VALUES ('8b05b8a4-531e-47b7-a7d4-1e7a864deaad','Interview 1', '2021-04-26', true);
+
+INSERT INTO public."interview" (id, name, created, activity)  
+VALUES ('9819cbef-f20f-4b81-bc66-e720022366f0','Interview 2', '2021-04-26', false);
+
+INSERT INTO public."interview" (id, name, created, activity)  
+VALUES ('3795a3b2-3fae-4ab8-8be2-af8675009a00','Interview 3', '2021-04-26', false);
+-----------------------/interview------------------------------
+
+------------------------question-------------------------
+CREATE TABLE public.question
+(
+    id uuid NOT NULL,
+    text character varying COLLATE pg_catalog."default",
+    CONSTRAINT question_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.question
+    OWNER to postgres;
+    
+INSERT INTO public."question" (id, text)  
+VALUES ('febeeba0-26ca-44eb-83c2-d41c6caa878f','How I can connect Interviews to Questions?');
+
+INSERT INTO public."question" (id, text)  
+VALUES ('a93a8a8d-3db3-4d7e-acad-ac0ca18c8e9c','How to work with Liquibase?');
+
+-----------------------/question--------------------------
